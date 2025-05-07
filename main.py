@@ -432,7 +432,7 @@ app.add_middleware(
 
 app.mount("/outputs/images", StaticFiles(directory="outputs/images"), name="images")
 app.mount("/outputs/audio", StaticFiles(directory="outputs/audio"), name="audio")
-app.mount("/Uploads", StaticFiles(directory="Uploads"), name="pdf")
+app.mount("/uploads", StaticFiles(directory="uploads"), name="pdf")
 
 @app.post("/query")
 async def handle_query(value: str):
