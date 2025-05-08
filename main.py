@@ -84,7 +84,7 @@ def multiple_image(query):
                         img_name = f"{safe_question}_page_{page_num}.png"
                         img.save(os.path.join(output_folder, img_name))
                         print(f"✅ Saved: {img_name}")
-                        img_name = f"https://chatbot.chervicaon.com/output_images/{img_name}"
+                        img_name = f"https://mjnbot.chervicaon.com/output_images/{img_name}"
                         image_list.append(img_name)
                 except Exception as e:
                     print(f"❌ Error processing {pdf_path} page {page_num}: {e}")
@@ -271,7 +271,7 @@ def extract_and_highlight(file_path, page_number, answer, query_id, IMAGE_DIR):
         img_path = os.path.join(IMAGE_DIR, f"{query_id}_highlighted.png")
         highlighted_img.save(img_path)
         print(f"Highlighted answer saved as '{img_path}'")
-        return f"https://chatbot.chervicaon.com/outputs/images/{os.path.basename(img_path)}"
+        return f"https://mjnbot.chervicaon.com/outputs/images/{os.path.basename(img_path)}"
     except Exception as e:
         print(f"Error extracting and highlighting answer for {file_path}: {e}")
         return None
@@ -283,7 +283,7 @@ def generate_audio(response_text, query_id, AUDIO_DIR):
         audio_path = os.path.join(AUDIO_DIR, f"{query_id}_response.mp3")
         tts.save(audio_path)
         print(f"Audio response saved as '{audio_path}'")
-        return f"https://chatbot.chervicaon.com/outputs/audio/{os.path.basename(audio_path)}"
+        return f"https://mjnbot.chervicaon.com/outputs/audio/{os.path.basename(audio_path)}"
     except Exception as e:
         print(f"Error generating audio: {e}")
         return None
@@ -297,9 +297,9 @@ def save_to_json(query_id, query_text, response, page_number=None, img_path=None
             "query": query_text,
             "response": response,
             "page_number": page_number,
-            "image_path": img_path if img_path else "https://chatbot.chervicaon.com/outputs/images/None",
+            "image_path": img_path if img_path else "https://mjnbot.chervicaon.com/outputs/images/None",
             "audio_path": audio_path,
-            "pdf_path": f"https://chatbot.chervicaon.com/uploads/{os.path.basename(pdf_path)}" if pdf_path else None,
+            "pdf_path": f"https://mjnbot.chervicaon.com/uploads/{os.path.basename(pdf_path)}" if pdf_path else None,
             "timestamp": str(datetime.now())
         }
         f.seek(0)
@@ -388,9 +388,9 @@ def process_query(query_text, embed_model, llm, IMAGE_DIR, AUDIO_DIR):
         QUERY_CACHE[cache_key] = {
             "response": best_response,
             "page_number": best_page_number,
-            "image_path": img_path if img_path else "https://chatbot.chervicaon.com/outputs/images/None",
+            "image_path": img_path if img_path else "https://mjnbot.chervicaon.com/outputs/images/None",
             "audio_path": audio_path,
-            "pdf_path": f"https://chatbot.chervicaon.com/uploads/{os.path.basename(best_file_path)}" if best_file_path else None
+            "pdf_path": f"https://mjnbot.chervicaon.com/uploads/{os.path.basename(best_file_path)}" if best_file_path else None
         }
         return json_save
     json_save = save_to_json(query_id, query_text, "No specific information found.")
