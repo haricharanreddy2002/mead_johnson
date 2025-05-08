@@ -33,6 +33,13 @@ load_dotenv()
 # Initialize ChromaDB client
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
 
+OUTPUT_DIR = "outputs"
+IMAGE_DIR = os.path.join(OUTPUT_DIR, "images")  # outputs/images
+AUDIO_DIR = os.path.join(OUTPUT_DIR, "audio")   # outputs/audio
+
+os.makedirs(IMAGE_DIR, exist_ok=True)  # Creates if missing, no error if exists
+os.makedirs(AUDIO_DIR, exist_ok=True)  # Same for audio
+
 # In-memory cache for query results
 QUERY_CACHE = {}
 
